@@ -1,0 +1,49 @@
+<main class="contenedor-principal">
+  
+  <!-- Sección de Captura de Datos -->
+  <section class="seccion-formulario">
+    <h2>{{ modoEdicion ? 'Editar Registro' : 'Nuevo Registro' }}</h2>
+    <form [formGroup]="form" (ngSubmit)="guardarRegistro()" class="formulario">
+      <div class="grupo-input">
+        <label>Nombre:</label>
+        <input type="text" formControlName="nombre" placeholder="Ingresa un nombre">
+      </div>
+      <div class="grupo-input">
+        <label>Descripción:</label>
+        <input type="text" formControlName="descripcion" placeholder="Ingresa una descripción">
+      </div>
+      <button type="submit" [disabled]="form.invalid">Guardar</button>
+    </form>
+  </section>
+
+  <!-- Sección de Visualización de Datos -->
+  <section class="seccion-tabla">
+    <h2>Registros en la Base de Datos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (registro of registros$ | async; track registro.id) {
+          <tr>
+            <td>{{ registro.nombre }}</td>
+            <td>{{ registro.descripcion }}</td>
+            <td>
+              <button (click)="editarRegistro(registro)" class="btn-editar">Editar</button>
+              <button (click)="eliminarRegistro(registro.id)" class="btn-eliminar">Eliminar</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="3">No hay registros en la base de datos.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+
+</main>

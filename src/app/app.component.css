@@ -1,0 +1,71 @@
+/* CSS Grid para dividir la pantalla en dos columnas en escritorio */
+.contenedor-principal {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* El formulario toma 1 fracción, la tabla 2 */
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Flexbox para el formulario interno */
+.formulario {
+  display: flex;
+  flex-direction: column; /* Apila los inputs hacia abajo */
+  gap: 15px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.grupo-input {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #ccc;
+}
+
+/* Estilos básicos de la tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.btn-editar { background-color: #28a745; margin-right: 5px; }
+.btn-eliminar { background-color: #dc3545; }
+
+/* Diseño responsivo: En pantallas pequeñas, pasa de 2 columnas (Grid) a 1 sola */
+@media (max-width: 768px) {
+  .contenedor-principal {
+    grid-template-columns: 1fr; 
+  }
+}
